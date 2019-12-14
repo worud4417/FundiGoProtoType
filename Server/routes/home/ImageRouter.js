@@ -26,8 +26,6 @@ router.get('/imageList',function(req,res,next){
     })
 })
 
-router.use('/homeMainImage',function(req,res,next){
-    next();
-},express.static("../public/images/home"))
+router.use('/homeMainImage',express.static("../public/images/home"));
 
 module.exports = router;

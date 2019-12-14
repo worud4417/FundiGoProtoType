@@ -8,6 +8,7 @@ import Color from './resource/Color';
 import FeedScreen from './screen/feed/FeedScreen';
 
 import HomeScreen from './screen/home/HomeScreen';
+import SearchScreen from './screen/home/SearchScreen';
 
 import ProfileScreen from './screen/profile/ProfileScreen';
 
@@ -38,6 +39,9 @@ const feedSwitchNavigator = createSwitchNavigator({
 const homeSwitchNavigator = createSwitchNavigator({
     home : {
         screen : HomeScreen
+    },
+    search:{
+        screen : SearchScreen
     }
 })
 
@@ -103,6 +107,9 @@ const rootMaterialBottomNavigator = createMaterialBottomTabNavigator({
 const switchNavigator = createSwitchNavigator({
     root : {
         screen : rootMaterialBottomNavigator
+    },
+    Login : {
+        screen : LoginScreen
     }
 })
 

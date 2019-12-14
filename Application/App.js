@@ -1,8 +1,12 @@
 import React from 'react';
-import {Text, View,Image} from 'react-native';
+import {View,Image} from 'react-native';
 import AppContainer from './src/Navigation';
 import {SplashScreen} from 'expo';
 import {Asset} from 'expo-asset';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+import reducer from './src/redux/reducer/Index';
 
 class App extends React.Component {
 
@@ -27,7 +31,9 @@ class App extends React.Component {
     }
     else{
       return (
-        <AppContainer></AppContainer>
+        <Provider store = {createStore(reducer)}>
+          <AppContainer></AppContainer>
+        </Provider>
       );
     }
   }

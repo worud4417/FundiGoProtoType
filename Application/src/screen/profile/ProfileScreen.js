@@ -1,9 +1,17 @@
 import React from 'react';
 import {Text,View} from 'react-native';
+import {connect} from 'react-redux';
+import ActionCreator from '../../redux/action/Index';
 
 class ProfileScreen extends React.Component{
     constructor(props){
         super(props);
+    }
+
+    componentDidMount(){
+        if(!this.props.auth.isLogin){
+            return this.props.navigation.navigate("Login",{path:"profile"});
+        }
     }
 
     render(){
@@ -15,4 +23,18 @@ class ProfileScreen extends React.Component{
     }
 }
 
-export default ProfileScreen;
+function mapStateToProps(state){
+    return{
+        auth:state.auth
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        Login:(auth)=>{
+            dispatch(ActionCreator.Login(auth));
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProfileScreen);

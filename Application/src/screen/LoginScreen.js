@@ -48,6 +48,7 @@ class LoginScreen extends React.Component{
               }
               else{
                   this.props.Login(response);
+                  this.props.navigation.navigate(this.props.navigation.getParam("path"))
               }
             } else {
               return false;

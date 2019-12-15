@@ -10,7 +10,7 @@ class FundiGoScreen extends React.Component{
 
     componentDidMount(){
         if(!this.props.auth.isLogin){
-            return this.props.navigation.navigate("Login",{path:"fundigo"});
+            return this.props.navigation.navigate("login",{path:"fundigo"});
         }
     }
 

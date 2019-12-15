@@ -10,7 +10,7 @@ class ProfileScreen extends React.Component{
 
     componentDidMount(){
         if(!this.props.auth.isLogin){
-            return this.props.navigation.navigate("Login",{path:"profile"});
+            return this.props.navigation.navigate("login",{path:"profile"});
         }
     }
 

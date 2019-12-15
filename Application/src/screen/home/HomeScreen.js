@@ -1,9 +1,10 @@
 import React from 'react';
-import {Text,View,Image,Dimensions,StyleSheet,TouchableOpacity} from 'react-native';
+import {Text,View,Image,Dimensions,StyleSheet,TouchableOpacity,Alert} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {connect} from 'react-redux';
 import ActionCreator from '../../redux/action/Index';
 import Icon from 'react-native-vector-icons/Ionicons';
+import NetInfo from '@react-native-community/netinfo';
 
 import {fetchGetHomeImageList,GetHomeMainImage} from '../../api/HomeImageApi';
 
@@ -13,18 +14,34 @@ class HomeScreen extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            list:[" "]
+            list:[" "],
+            isRerander : false
         }
     }
 
-    async componentWillMount(){
+    async componentDidMount(){
         let result = await fetchGetHomeImageList();
         let imageList = new Array();
         for(let i = 0 ; i<result.list.length;i++){
             imageList.push(await GetHomeMainImage(result.list[i]));
         }
-
         this.setState({list:imageList})
+    }
+
+    shouldComponentUpdate(){
+        NetInfo.fetch().then(state => {
+            if(state.isConnected == false){
+              Alert.alert(
+                '네트워크',
+                '네트워크가 연결되어있지 않습니다.',
+                [
+                  {text: '확인', onPress: () => this.setState({isRerander:!this.state.isRerander})}
+                ],
+                {cancelable: false}
+              );
+            }
+        });
+        return true;
     }
 
     _renderItem = ({item, index}) => {

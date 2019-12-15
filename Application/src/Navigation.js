@@ -108,7 +108,7 @@ const switchNavigator = createSwitchNavigator({
     root : {
         screen : rootMaterialBottomNavigator
     },
-    Login : {
+    login : {
         screen : LoginScreen
     }
 })
